@@ -1,3 +1,7 @@
+# Folders #
+###########
+/node_modules/
+
 ass
 *.dll
 *.exe
