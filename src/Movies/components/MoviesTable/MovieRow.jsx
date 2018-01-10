@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Table, Rating } from 'semantic-ui-react'
+import { Icon, Table, Image } from 'semantic-ui-react'
 
 import { moviePropsShape } from './contants'
 
@@ -10,13 +10,10 @@ class MovieRow extends Component {
     return (
       <Table.Row>
         <Table.Cell>
-          <Icon name="gear" />
+          <Image src={movie.Poster} size='mini' />
         </Table.Cell>
-        <Table.Cell>{movie.name}</Table.Cell>
-        <Table.Cell>{movie.releaseDate.toDateString()}</Table.Cell>
-        <Table.Cell>
-          <Rating icon='star' defaultRating={movie.rating} maxRating={5} />
-        </Table.Cell>
+        <Table.Cell>{movie.Title}</Table.Cell>
+        <Table.Cell>{movie.Year}</Table.Cell>
       </Table.Row>
     )
   }

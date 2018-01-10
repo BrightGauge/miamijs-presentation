@@ -12,10 +12,9 @@ class MoviesTable extends Component {
       <Table celled padded unstackable>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell />
-            <Table.HeaderCell>Name</Table.HeaderCell>
-            <Table.HeaderCell>Release Date</Table.HeaderCell>
-            <Table.HeaderCell>Rating</Table.HeaderCell>
+            <Table.HeaderCell collapsing>Poster</Table.HeaderCell>
+            <Table.HeaderCell>Title</Table.HeaderCell>
+            <Table.HeaderCell>Year</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -28,15 +27,13 @@ class MoviesTable extends Component {
 };
 
 MoviesTable.propTypes = {
-  loading: PropTypes.bool,
   onSort: PropTypes.func,
   movies: PropTypes.arrayOf(moviePropsShape).isRequired,
 };
 
 MoviesTable.defaultProps = {
-  loading: false,
-  movies: [],
   onSort: () => {}, // noop
+  movies: [],
 };
 
 export default MoviesTable

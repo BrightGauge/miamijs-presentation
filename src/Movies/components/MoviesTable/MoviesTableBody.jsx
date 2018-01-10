@@ -10,7 +10,7 @@ const MoviesTableBody = ({ movies }) => {
 
   if (hasMovies) {
     return movies.map((movie) => (
-      <MovieRow key={movie.id} movie={movie} />
+      <MovieRow key={movie.imdbID} movie={movie} />
     ))
   }
   return (
