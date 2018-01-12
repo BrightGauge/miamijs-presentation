@@ -11,7 +11,7 @@ class FilterForm extends Component {
   }
 
   get initialState() {
-    return { title: '', year: '' }
+    return { Title: '', Year: '', Genre: '' }
   }
 
   handleChange(e, { name, value }) {
@@ -19,31 +19,38 @@ class FilterForm extends Component {
   }
 
   handleSubmit() {
-    const { title, year } = this.state
-    if (title.length > 1) {
-      this.props.onSearch({ s: title, y: year })
-    }
+    const { Title, Year, Genre } = this.state
+    this.props.onSearch({ Title, Year, Genre })
   }
 
   render() {
-    const { title, year } = this.state
+    const { Title, Year, Genre } = this.state
     return (
       <Form onSubmit={this.handleSubmit}>
         <Form.Field>
           <Form.Input
-            name='title'
+            name='Title'
             label="Title"
             placeholder="Star Wars"
-            value={title}
+            value={Title}
             onChange={this.handleChange}
           />
         </Form.Field>
         <Form.Field>
           <Form.Input
-            name='year'
+            name='Year'
             label="Year"
             placeholder="2017"
-            value={year}
+            value={Year}
+            onChange={this.handleChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <Form.Input
+            name='Genre'
+            label="Genre"
+            placeholder="Horror"
+            value={Genre}
             onChange={this.handleChange}
           />
         </Form.Field>
