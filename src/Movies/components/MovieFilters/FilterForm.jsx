@@ -56,6 +56,7 @@ class FilterForm extends Component {
         </Form.Field>
         <Button
           type='submit'
+          className="primary"
           loading={this.props.isSearching}
         >
           Search

@@ -10,7 +10,7 @@ class MoviesTable extends Component {
   render() {
     const { movies, columns } = this.props
     return (
-      <Table celled padded unstackable>
+      <Table padded unstackable basic="very">
         <MoviesTableHeader columns={columns} />
         <MoviesTableBody movies={movies} columns={columns} />
       </Table>

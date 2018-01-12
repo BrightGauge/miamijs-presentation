@@ -4,12 +4,14 @@ import { Icon, Table, Image } from 'semantic-ui-react'
 
 import { moviePropsShape } from './constants'
 
+import Poster from 'Movies/components/MoviesTable/Poster'
+
 class MovieRow extends Component {
   renderColumnElementType(column) {
     const { movie } = this.props
     switch (column.type) {
       case 'image':
-        return <Image src={movie[column.key]} size='tiny' />
+        return <Poster src={movie[column.key]}/>
       default:
         return movie[column.key]
     }
