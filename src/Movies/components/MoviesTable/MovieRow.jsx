@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Icon, Table, Image } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
-import { moviePropsShape } from './constants'
+import { MovieShape } from 'Movies/constants'
 
 import Poster from 'Movies/components/MoviesTable/Poster'
 
@@ -18,7 +18,7 @@ class MovieRow extends Component {
   }
 
   render() {
-    const { movie, columns } = this.props
+    const { columns } = this.props
 
     const rowColumns = columns.map((column) => (
       <Table.Cell
@@ -37,8 +37,8 @@ class MovieRow extends Component {
 };
 
 MovieRow.propTypes = {
-  movie: moviePropsShape.isRequired,
-  columns: PropTypes.arrayOf(PropTypes.objects).isRequired,
+  movie: MovieShape.isRequired,
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 MovieRow.defaultProps = {

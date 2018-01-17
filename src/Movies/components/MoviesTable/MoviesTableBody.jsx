@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react'
 
-import { moviePropsShape } from './constants'
+import { MovieShape } from 'Movies/constants'
 import MovieRow from './MovieRow'
 
 const EmptyMoviesBody = () => (
@@ -33,8 +33,8 @@ const MoviesTableBody = ({ movies, columns }) => {
 };
 
 MoviesTableBody.propTypes = {
-  movies: PropTypes.arrayOf(moviePropsShape),
-  columns: PropTypes.arrayOf(PropTypes.objects).isRequired,
+  movies: PropTypes.arrayOf(MovieShape),
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 MoviesTableBody.defaultProps = {
