@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Message } from 'semantic-ui-react'
+import { Grid, Segment, Message, Divider } from 'semantic-ui-react'
 
 import 'Movies/containers/MoviesSearch/MoviesSearch.css'
 
 import MoviesTable from 'Movies/components/MoviesTable'
 import MovieFilters from 'Movies/components/MovieFilters'
+
+import RatingBarChart from 'Movies/components/MovieCharts/RatingBarChart'
+import YearPieChart from 'Movies/components/MovieCharts/YearPieChart'
 
 import localMovies from 'Movies/database'
 
@@ -65,6 +68,10 @@ class MoviesSearch extends Component {
               onSearch={this.searchMovies}
               isSearching={pending}
             />
+            <Divider />
+            <YearPieChart movies={movies} />
+            <Divider />
+            <RatingBarChart movies={movies} />
           </Segment>
         </Grid.Column>
         <Grid.Column stretched width={12}>
