@@ -46,7 +46,7 @@ First we are going to create a folder named *reducers* in our Movies module, and
 // src/Movies/reducers/movies.js
 export const GET_MOVIES = 'MOVIES/GET_MOVIES'
 ```
-First we are going to create an action type of *GET_MOVIES*, in order to set new movies through our movies reducer
+First we are going to create an action type of `GET_MOVIES`, in order to set new movies through our movies reducer
 
 ```.js
 const initialState = []
