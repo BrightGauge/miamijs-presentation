@@ -7,7 +7,12 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 
-const rootReducer = combineReducers({})
+import moviesReducer from 'Movies/reducers/movies'
+
+const rootReducer = combineReducers({
+	movies: moviesReducer,
+})
+
 const store = createStore(
 	rootReducer,
 	{},

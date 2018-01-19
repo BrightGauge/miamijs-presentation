@@ -8,7 +8,7 @@
 yarn add redux react-redux
 yarn add redux-devtools -D
 ```
-  
+
 ### 2. Create the store and add it to your app
 ```.js
   // src/index.js
@@ -41,6 +41,47 @@ ReactDOM.render(
 Finally we need to wrap our `<App />` with the `<Provider />` component provided by `react-redux` in order to easily access the store within our App components.
 
 ### 3. Create the Movies reducer
+First we are going to create a folder named *reducers* in our Movies module, and then create a `movies.js` file that will contain our movies reducer
+```.js
+// src/Movies/reducers/movies.js
+export const GET_MOVIES = 'MOVIES/GET_MOVIES'
+```
+First we are going to create an action type of *GET_MOVIES*, in order to set new movies through our movies reducer
+
+```.js
+const initialState = []
+```
+Then, we are going to create an object to hold the initial state for our movies, in this case an empty array
+
+```.js
+export default function movies(state = initialState, action) {
+  const { type, payload } = action
+  switch (type) {
+    case GET_MOVIES:
+      return payload
+    default:
+      return state
+  }
+}
+```
+To finish off, we will create our reducer function that will take the current movie state, which we are defaulting to `initialState` if not defined yet, and the current action being passed in.
+
+We are then decomposing the type of the action, and the data, defined as *payload*, from the action that is coming in.
+
+Then, because every reducer acts on every single action regardless of it being related to this piece of the state or not, we need to act only on the action types we care about for our `movies` reducer, in this case, we want to react to an action that has the *GET_MOVIES* type, and take the data sent, and set it as the new list of movies
+
+Because redux recreates the entire state tree on every single action, we need to make sure that if the action getting through is not important to this reducer, we always return the original state back, as you can see here in the `default` case.
+
+### 4. Add the `movies` reducer to our App's root reducer
+```.js
+// src/index.js
+import moviesReducer from 'Movies/reducers/movies'
+
+const rootReducer = combineReducers({
+	movies: moviesReducer,
+})
+```
+Once the reducer is created, we need to add it to our `rootReducer` in order for redux to be aware that it exists
 
 
 ### 4. Create the Movies actions
