@@ -84,7 +84,7 @@ const rootReducer = combineReducers({
 Once the reducer is created, we need to add it to our `rootReducer` in order for redux to be aware that it exists
 
 
-### 6. Connect `<YearPieChart />` and get `movies` from the Redux Tree
+### 5. Connect `<YearPieChart />` and get `movies` from the Redux Tree
 Now we need a way to pull the movies we added from our state tree and on to the components that require them to render
 ```.js
 // src/Movies/components/MovieCharts/YearPieChart.jsx
@@ -105,7 +105,7 @@ export default connect(mapStateToProps)(YearPieChart)
 Finally, we are going to wrap our `YearPieChart` component in the `connect` function so that this component is aware of the Redux state tree and can grab any state that it needs to render itself.
 
 
-### 7. Connect `<RatingBarChart />` and get `movies` from the Redux Tree
+### 6. Connect `<RatingBarChart />` and get `movies` from the Redux Tree
 ```.js
 // src/Movies/components/MovieCharts/RatingBarChart.jsx
 import { connect } from 'react-redux'
@@ -121,7 +121,7 @@ export default connect(mapStateToProps)(RatingBarChart)
 Again, we are going to connect the `RatingBarChart` component to the Redux state tree using the `connect` utility
 
 
-### 5. Connect `<MoviesTableBody />` and get `movies` from the Redux Tree
+### 7. Connect `<MoviesTableBody />` and get `movies` from the Redux Tree
 ```.js
 // src/Movies/components/MoviesTableBody/MoviesTableBody.jsx
 import { connect } from 'react-redux'
@@ -137,7 +137,7 @@ export default connect(mapStateToProps)(MoviesTableBody)
 And also for the `MoviesTableBody` component
 
 
-### 5. Clean up the `<MoviesSearch />` component to no longer pass movies to the children components
+### 8. Clean up the `<MoviesSearch />` component to no longer pass movies to the children components
 ```.js
 render() {
   return (
@@ -161,10 +161,73 @@ Now that we are accessing the movies directly from the redux state tree, we can 
 Let's remove the movies being passed in to the components we connected to the redux state tree.
 
 
-### 8. Create the Movies actions
+### 9. Create the Movies actions
+As you can see there is no data on the page anymore, and that is because our `movies` state is an empty string.
+
+Remember the reducer that we created for movies? Well, now we need to create an action that will fire the `GET_MOVIES` type and send the appropriate `payload`, in this case, our local movies database
+
+```.js
+// src/Movies/actions/movies.js
+import localMoviesDB from 'Movies/database'
+import { GET_MOVIES } from 'Movies/reducers/movies'
+```
+First we are going to import our local movies database, so we can pass that along to our reducer through our action.  
+We are also importing our action type from our reducer so we can always have the correct string even if it changes.
+
+```.js
+export const getMovies = () => {
+  return { type: GET_MOVIES, payload: localMoviesDB }
+}
+```
+Next we are going to create a function called `getMovies` that will return `action` that has the `GET_MOVIES` type, and is sending our local database as the `payload`.
 
 
-### 8. Connect `<MoviesSearch />` and map `getMovies` action to dispatch and call on mount
+### 10. Connect `<MoviesSearch />` and map `getMovies` action to dispatch and call on mount
+Next we need to call the new action from inside a component. In this case it makes sense for our `MoviesSearch` container to call it since all of the components that rely on movies are being rendered there.
+```.js
+import { connect } from 'react-redux'
+import { getMovies } from 'Movies/actions/movies'
+```
+First, let's import the `getMovies` action we just created. We also need to import `connect` in order to make this component redux aware
+
+```.js
+const mapStateToProps = () => {}
+
+const reduxActions = {
+  getMovies: getMovies,
+}
+
+export default connect(mapStateToProps, reduxActions)(MoviesSearch)
+```
+Next we are going to pass in an object of redux actions that we want for this component to have access to.
+We need to do this in order for `connect` to wrap our actions in a special redux function that knows how to interact with the redux state container.
+
+```.js
+MoviesSearch.propTypes = {
+  getMovies: PropTypes.func.isRequired,
+}
+```
+`getMovies` gets passed to `connect`, and then `connect` is going to pass the function down to our original component via props, so we need to define the `getMovies` PropType in the current component.
+
+**Note:** Make sure to import `PropTypes`, otherwise we will get an error while trying to define this
+
+```.js
+constructor(props) {
+  super(props)
+  this.searchMovies = this.searchMovies.bind(this)
+  this.props.getMovies()
+}
+```
+Finally we need to call that function in the constructor, or when this component mounts, so we can initialize the movies list with the new data
+**Note:** we need to make sure to call `super` with `props`, otherwise `this.props` will be undefined.
+
+```.js
+render() {
+  const { movies } = this.props // DELETE
+  ...
+}
+```
+Let's also remove `movies` from `render`
 
 
 ### 9. Create the Filters reducer

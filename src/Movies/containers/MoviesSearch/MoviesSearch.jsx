@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Segment, Divider } from 'semantic-ui-react'
 
 import 'Movies/containers/MoviesSearch/MoviesSearch.css'
@@ -11,12 +12,15 @@ import YearPieChart from 'Movies/components/MovieCharts/YearPieChart'
 
 import localMovies from 'Movies/database'
 
+import { connect } from 'react-redux'
+import { getMovies } from 'Movies/actions/movies'
+
 
 class MoviesSearch extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.searchMovies = this.searchMovies.bind(this)
-    this.state = { movies: localMovies }
+    this.props.getMovies()
   }
 
   filterByString(movies, key, value) {
@@ -44,8 +48,6 @@ class MoviesSearch extends Component {
   }
 
   render() {
-    const { movies } = this.state
-
     return (
       <Segment.Group horizontal className="bg movies">
         <Segment basic className="movies-filters">
@@ -64,9 +66,16 @@ class MoviesSearch extends Component {
 }
 
 MoviesSearch.propTypes = {
+  getMovies: PropTypes.func.isRequired,
 }
 
 MoviesSearch.defaultProps = {
 }
 
-export default MoviesSearch
+const mapStateToProps = () => {}
+
+const reduxActions = {
+  getMovies: getMovies,
+}
+
+export default connect(mapStateToProps, reduxActions)(MoviesSearch)
