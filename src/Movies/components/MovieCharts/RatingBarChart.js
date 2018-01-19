@@ -41,7 +41,7 @@ const RatingBarChart = ({ movies }) => {
             animationDuration={300}
           >
             {RATINGS.map((entry, index) => (
-              <Cell fill={COLORS[index % COLORS.length]}/>)
+              <Cell key={entry} fill={COLORS[index % COLORS.length]}/>)
             )}
           </Bar>
         </BarChart>

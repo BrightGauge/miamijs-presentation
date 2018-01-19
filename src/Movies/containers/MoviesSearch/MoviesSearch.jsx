@@ -16,11 +16,7 @@ class MoviesSearch extends Component {
   constructor() {
     super()
     this.searchMovies = this.searchMovies.bind(this)
-    this.state = this.initialState
-  }
-
-  get initialState() {
-    return { movies: localMovies }
+    this.state = { movies: localMovies }
   }
 
   filterByString(movies, key, value) {

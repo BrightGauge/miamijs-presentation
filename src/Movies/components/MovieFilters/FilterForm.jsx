@@ -7,11 +7,7 @@ class FilterForm extends Component {
     super()
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.state = this.initialState
-  }
-
-  get initialState() {
-    return { Title: '', Year: '', Genre: '' }
+    this.state = { Title: '', Year: '', Genre: '' }
   }
 
   handleChange(e, { name, value }) {

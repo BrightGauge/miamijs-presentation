@@ -9,5 +9,6 @@
 }
 
 .bg.movies .movies_filters {
-  max-width: 350px;
+  max-width: 300px;
+  min-width: 300px !important;
 }

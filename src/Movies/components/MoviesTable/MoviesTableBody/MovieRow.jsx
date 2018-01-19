@@ -29,7 +29,10 @@ class MovieRow extends Component {
     ))
 
     return (
-      <Table.Row>
+      <Table.Row
+        style={{ cursor: 'pointer' }}
+        onClick={() => this.props.onClick(this.props.movie)}
+      >
         {rowColumns}
       </Table.Row>
     )
@@ -39,10 +42,12 @@ class MovieRow extends Component {
 MovieRow.propTypes = {
   movie: MovieShape.isRequired,
   columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClick: PropTypes.func,
 };
 
 MovieRow.defaultProps = {
   movies: {},
+  onClick: () => {},
 };
 
 export default MovieRow

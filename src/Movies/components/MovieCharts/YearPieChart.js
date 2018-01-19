@@ -38,7 +38,7 @@ const YearPieChart = ({ movies }) => {
             data={getPieChartData(movies)}
           >
             {movies.map((entry, index) => (
-              <Cell fill={COLORS[index % COLORS.length]}/>)
+              <Cell key={entry.imdbID} fill={COLORS[index % COLORS.length]}/>)
             )}
           </Pie>
           <Tooltip/>
