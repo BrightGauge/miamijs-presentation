@@ -78,7 +78,7 @@ Because redux recreates the entire state tree on every single action, we need to
 import moviesReducer from 'Movies/reducers/movies'
 
 const rootReducer = combineReducers({
-	movies: moviesReducer,
+  movies: moviesReducer,
 })
 ```
 Once the reducer is created, we need to add it to our `rootReducer` in order for redux to be aware that it exists
