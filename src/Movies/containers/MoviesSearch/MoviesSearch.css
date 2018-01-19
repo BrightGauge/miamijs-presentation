@@ -1,4 +1,13 @@
-.bg.movies {
+.ui.segments.bg.movies {
+  margin-top: 0;
+  border: 0;
+}
+
+.bg.movies .movies_table {
   overflow: auto;
   height: 100vh;
+}
+
+.bg.movies .movies_filters {
+  max-width: 350px;
 }

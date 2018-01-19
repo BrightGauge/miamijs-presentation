@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Segment, Message, Divider } from 'semantic-ui-react'
+import { Segment, Divider } from 'semantic-ui-react'
 
 import 'Movies/containers/MoviesSearch/MoviesSearch.css'
 
@@ -20,19 +20,20 @@ class MoviesSearch extends Component {
   }
 
   get initialState() {
-    return { movies: localMovies, error: null, pending: false }
+    return { movies: localMovies }
   }
 
   filterByString(movies, key, value) {
     if (value === '') {
       return movies
     }
-    return movies.filter((movie) => movie[key].includes(value))
+    return movies.filter((movie) => (
+      movie[key].toLowerCase().includes(value.toLowerCase())
+    ))
   }
 
   searchMovies({ ...args }) {
     let movies = localMovies
-    this.setState({ pending: true })
     for (const key of Object.keys(args)) {
       switch (key) {
         case 'Title':
@@ -43,43 +44,27 @@ class MoviesSearch extends Component {
         default:
       }
     }
-    this.setState({ movies, pending: false })
+    this.setState({ movies })
   }
 
   render() {
-    const { movies, error, pending } = this.state
-
-    const errorMessage = error && (
-      <Grid.Column width={16}>
-        <Message
-          error
-          header='There was an error while searching for movies'
-          content={error.toString()}
-        />
-      </Grid.Column>
-    )
+    const { movies } = this.state
 
     return (
-      <Grid>
-        {errorMessage}
-        <Grid.Column width={4}>
-          <Segment className="bg movie filters" basic>
-            <MovieFilters
-              onSearch={this.searchMovies}
-              isSearching={pending}
-            />
-            <Divider />
-            <YearPieChart movies={movies} />
-            <Divider />
-            <RatingBarChart movies={movies} />
-          </Segment>
-        </Grid.Column>
-        <Grid.Column stretched width={12}>
-          <Segment className="bg movies" basic loading={pending}>
-            <MoviesTable movies={movies} />
-          </Segment>
-        </Grid.Column>
-      </Grid>
+      <Segment.Group horizontal className="bg movies">
+        <Segment basic className="movies_filters">
+          <MovieFilters
+            onSearch={this.searchMovies}
+          />
+          <Divider />
+          <YearPieChart movies={movies} />
+          <Divider />
+          <RatingBarChart movies={movies} />
+        </Segment>
+        <Segment basic className="movies_table">
+          <MoviesTable movies={movies} />
+        </Segment>
+      </Segment.Group>
     )
   }
 }

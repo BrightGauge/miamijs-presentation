@@ -5,6 +5,7 @@ import { Table } from 'semantic-ui-react'
 import { MovieShape } from 'Movies/constants'
 import MovieRow from './MovieRow'
 
+
 const EmptyMoviesBody = () => (
   <Table.Row>
     <Table.Cell textAlign="center" colSpan="999">

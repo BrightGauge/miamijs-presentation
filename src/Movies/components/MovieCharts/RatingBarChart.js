@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Segment, Header } from 'semantic-ui-react'
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts'
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Cell, Tooltip, Legend } from 'recharts'
 
 import { MovieShape } from 'Movies/constants'
 
 const RATINGS = ['PG', 'PG-13', 'R']
+const COLORS = ['#2185d0', '#4b5ba9', '#1c1354'];
 
 const getBarChartData = (movies) => {
   const moviesByRating = movies.reduce((byRating, movie) => {
@@ -34,10 +35,15 @@ const RatingBarChart = ({ movies }) => {
           <Legend />
           <Bar
             dataKey="movies"
+            label={{ fill: 'white', fontSize: 20 }}
             fill="#2185d0"
             animationBegin={0}
             animationDuration={300}
-          />
+          >
+            {RATINGS.map((entry, index) => (
+              <Cell fill={COLORS[index % COLORS.length]}/>)
+            )}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </Segment>

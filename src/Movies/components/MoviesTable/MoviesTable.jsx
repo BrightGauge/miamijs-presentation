@@ -24,7 +24,7 @@ class MoviesTable extends Component {
     return (
       <Table padded unstackable basic="very">
         <MoviesTableHeader columns={columnsToRender} />
-        <MoviesTableBody movies={movies} columns={columnsToRender} />
+        <MoviesTableBody movies={movies} columns={columnsToRender}/>
       </Table>
     )
   }

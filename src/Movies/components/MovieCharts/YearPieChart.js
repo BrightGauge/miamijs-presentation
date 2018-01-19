@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Segment, Header } from 'semantic-ui-react'
-import { ResponsiveContainer, PieChart, Pie, Tooltip } from 'recharts'
+import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts'
 
 import { MovieShape } from 'Movies/constants'
+
+const COLORS = ['#2185d0', '#1c1354', '#a6d6d0', '#79b4c1', '#4b5ba9', '#575a77', '#3d3a92'];
 
 const getSliceLabel = ({ name, value }) => `${name}`
 
@@ -34,7 +36,11 @@ const YearPieChart = ({ movies }) => {
             animationDuration={300}
             // isAnimationActive={false}
             data={getPieChartData(movies)}
-          />
+          >
+            {movies.map((entry, index) => (
+              <Cell fill={COLORS[index % COLORS.length]}/>)
+            )}
+          </Pie>
           <Tooltip/>
         </PieChart>
       </ResponsiveContainer>

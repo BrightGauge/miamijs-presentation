@@ -58,7 +58,6 @@ class FilterForm extends Component {
           fluid
           type='submit'
           className="primary"
-          loading={this.props.isSearching}
         >
           Search
         </Button>
@@ -69,12 +68,10 @@ class FilterForm extends Component {
 
 FilterForm.propTypes = {
   onSearch: PropTypes.func,
-  isSearching: PropTypes.bool,
 };
 
 FilterForm.defaultProps = {
   onSearch: () => {},
-  isSearching: false,
 };
 
 export default FilterForm
