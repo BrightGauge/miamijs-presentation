@@ -1,6 +1,7 @@
 import './MoviesTableBody.css'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import { Table } from 'semantic-ui-react'
 
 import { MovieShape } from 'Movies/constants'
@@ -60,4 +61,8 @@ MoviesTableBody.defaultProps = {
   movies: [],
 }
 
-export default MoviesTableBody
+const mapStateToProps = (state, props) => ({
+  movies: state.movies,
+})
+
+export default connect(mapStateToProps)(MoviesTableBody)

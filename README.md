@@ -84,17 +84,84 @@ const rootReducer = combineReducers({
 Once the reducer is created, we need to add it to our `rootReducer` in order for redux to be aware that it exists
 
 
-### 4. Create the Movies actions
-
-
-
-### 5. Connect `<MoviesTableBody />` and get `movies` from the Redux Tree
-
-
 ### 6. Connect `<YearPieChart />` and get `movies` from the Redux Tree
+Now we need a way to pull the movies we added from our state tree and on to the components that require them to render
+```.js
+// src/Movies/components/MovieCharts/YearPieChart.jsx
+import { connect } from 'react-redux'
+```
+First, we need to import the `connect` utility from `react-redux` in order to connect this component to the redux state tree
+
+```.js
+const mapStateToProps = (state, props) => ({
+  movies: state.movies,
+})
+```
+Next we need to define a function that we will pass to `connect` that will give us access to the state tree and the current Component props
+
+```.js
+export default connect(mapStateToProps)(YearPieChart)
+```
+Finally, we are going to wrap our `YearPieChart` component in the `connect` function so that this component is aware of the Redux state tree and can grab any state that it needs to render itself.
 
 
 ### 7. Connect `<RatingBarChart />` and get `movies` from the Redux Tree
+```.js
+// src/Movies/components/MovieCharts/RatingBarChart.jsx
+import { connect } from 'react-redux'
+
+...
+
+const mapStateToProps = (state, props) => ({
+  movies: state.movies,
+})
+
+export default connect(mapStateToProps)(RatingBarChart)
+```
+Again, we are going to connect the `RatingBarChart` component to the Redux state tree using the `connect` utility
+
+
+### 5. Connect `<MoviesTableBody />` and get `movies` from the Redux Tree
+```.js
+// src/Movies/components/MoviesTableBody/MoviesTableBody.jsx
+import { connect } from 'react-redux'
+
+...
+
+const mapStateToProps = (state, props) => ({
+  movies: state.movies,
+})
+
+export default connect(mapStateToProps)(MoviesTableBody)
+```
+And also for the `MoviesTableBody` component
+
+
+### 5. Clean up the `<MoviesSearch />` component to no longer pass movies to the children components
+```.js
+render() {
+  return (
+    <Segment.Group horizontal className="bg movies">
+      <Segment basic className="movies-filters">
+        <MovieFilters onSearch={this.searchMovies} />
+        <Divider />
+        <YearPieChart />
+        <Divider />
+        <RatingBarChart />
+      </Segment>
+      <Segment basic className="movies-table">
+        <MoviesTable />
+      </Segment>
+    </Segment.Group>
+  )
+}
+```
+Now that we are accessing the movies directly from the redux state tree, we can clean up our `MoviesSearch` component to no longer deal with movies.
+
+Let's remove the movies being passed in to the components we connected to the redux state tree.
+
+
+### 8. Create the Movies actions
 
 
 ### 8. Connect `<MoviesSearch />` and map `getMovies` action to dispatch and call on mount

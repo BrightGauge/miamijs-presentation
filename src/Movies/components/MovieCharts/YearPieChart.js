@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Segment, Header } from 'semantic-ui-react'
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts'
 
@@ -51,4 +52,8 @@ YearPieChart.propTypes = {
   movies: PropTypes.arrayOf(MovieShape).isRequired,
 }
 
-export default YearPieChart
+const mapStateToProps = (state, props) => ({
+  movies: state.movies,
+})
+
+export default connect(mapStateToProps)(YearPieChart)

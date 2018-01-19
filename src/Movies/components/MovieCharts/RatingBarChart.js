@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Segment, Header } from 'semantic-ui-react'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Cell, Tooltip, Legend } from 'recharts'
 
@@ -54,4 +55,8 @@ RatingBarChart.propTypes = {
   movies: PropTypes.arrayOf(MovieShape).isRequired,
 }
 
-export default RatingBarChart
+const mapStateToProps = (state, props) => ({
+  movies: state.movies,
+})
+
+export default connect(mapStateToProps)(RatingBarChart)

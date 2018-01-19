@@ -49,16 +49,14 @@ class MoviesSearch extends Component {
     return (
       <Segment.Group horizontal className="bg movies">
         <Segment basic className="movies-filters">
-          <MovieFilters
-            onSearch={this.searchMovies}
-          />
+          <MovieFilters onSearch={this.searchMovies} />
           <Divider />
-          <YearPieChart movies={movies} />
+          <YearPieChart />
           <Divider />
-          <RatingBarChart movies={movies} />
+          <RatingBarChart />
         </Segment>
         <Segment basic className="movies-table">
-          <MoviesTable movies={movies} />
+          <MoviesTable />
         </Segment>
       </Segment.Group>
     )
