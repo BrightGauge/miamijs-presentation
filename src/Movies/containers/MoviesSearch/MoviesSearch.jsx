@@ -48,7 +48,7 @@ class MoviesSearch extends Component {
 
     return (
       <Segment.Group horizontal className="bg movies">
-        <Segment basic className="movies_filters">
+        <Segment basic className="movies-filters">
           <MovieFilters
             onSearch={this.searchMovies}
           />
@@ -57,7 +57,7 @@ class MoviesSearch extends Component {
           <Divider />
           <RatingBarChart movies={movies} />
         </Segment>
-        <Segment basic className="movies_table">
+        <Segment basic className="movies-table">
           <MoviesTable movies={movies} />
         </Segment>
       </Segment.Group>

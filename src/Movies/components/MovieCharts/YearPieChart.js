@@ -34,7 +34,6 @@ const YearPieChart = ({ movies }) => {
             label={getSliceLabel}
             animationBegin={0}
             animationDuration={300}
-            // isAnimationActive={false}
             data={getPieChartData(movies)}
           >
             {movies.map((entry, index) => (

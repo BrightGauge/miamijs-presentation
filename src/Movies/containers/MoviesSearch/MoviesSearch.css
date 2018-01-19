@@ -3,12 +3,12 @@
   border: 0;
 }
 
-.bg.movies .movies_table {
+.bg.movies .movies-table {
   overflow: auto;
   height: 100vh;
 }
 
-.bg.movies .movies_filters {
+.bg.movies .movies-filters {
   max-width: 300px;
   min-width: 300px !important;
 }

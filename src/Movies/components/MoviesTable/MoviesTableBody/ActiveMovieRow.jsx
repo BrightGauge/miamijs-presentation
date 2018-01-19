@@ -7,7 +7,7 @@ import { MovieShape } from 'Movies/constants'
 import Poster from 'Movies/components/MoviesTable/Poster'
 
 const MovieActiveRow = ({ movie, onClick }) => (
-  <Table.Row onClick={() => onClick(movie)} style={{ cursor: 'pointer' }}>
+  <Table.Row onClick={() => onClick(movie)}>
     <Table.Cell>
       <Poster src={movie.Poster}/>
     </Table.Cell>

@@ -1,3 +1,4 @@
+import './MoviesTableBody.css'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react'
@@ -38,7 +39,7 @@ class MoviesTableBody extends Component {
   render() {
     const { movies } = this.props
     return (
-      <Table.Body>
+      <Table.Body className="table-body">
         {movies.length === 0 &&
           <EmptyMoviesBody/>
         }

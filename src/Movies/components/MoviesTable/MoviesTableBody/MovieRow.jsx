@@ -29,10 +29,7 @@ class MovieRow extends Component {
     ))
 
     return (
-      <Table.Row
-        style={{ cursor: 'pointer' }}
-        onClick={() => this.props.onClick(this.props.movie)}
-      >
+      <Table.Row onClick={() => this.props.onClick(this.props.movie)}>
         {rowColumns}
       </Table.Row>
     )
