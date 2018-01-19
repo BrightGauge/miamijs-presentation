@@ -66,9 +66,9 @@ export default function movies(state = initialState, action) {
 ```
 To finish off, we will create our reducer function that will take the current movie state, which we are defaulting to `initialState` if not defined yet, and the current action being passed in.
 
-We are then decomposing the type of the action, and the data, defined as *payload*, from the action that is coming in.
+We are then decomposing the type of the action, and the data, defined as `payload`, from the action that is coming in.
 
-Then, because every reducer acts on every single action regardless of it being related to this piece of the state or not, we need to act only on the action types we care about for our `movies` reducer, in this case, we want to react to an action that has the *GET_MOVIES* type, and take the data sent, and set it as the new list of movies
+Then, because every reducer acts on every single action regardless of it being related to this piece of the state or not, we need to act only on the action types we care about for our `movies` reducer, in this case, we want to react to an action that has the `GET_MOVIES` type, and take the data sent, and set it as the new list of movies
 
 Because redux recreates the entire state tree on every single action, we need to make sure that if the action getting through is not important to this reducer, we always return the original state back, as you can see here in the `default` case.
 
