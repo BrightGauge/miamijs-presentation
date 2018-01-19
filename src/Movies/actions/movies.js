@@ -1,6 +1,5 @@
-import localMoviesDB from 'Movies/database'
 import { GET_MOVIES } from 'Movies/reducers/movies'
 
-export const getMovies = () => {
-  return { type: GET_MOVIES, payload: localMoviesDB }
+export const getMovies = ({ ...filters }) => {
+  return { type: GET_MOVIES, filters: filters }
 }

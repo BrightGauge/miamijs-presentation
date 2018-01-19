@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react'
 
-import { MovieShape } from 'Movies/constants'
 import MoviesTableBody from './MoviesTableBody'
 import MoviesTableHeader from './MoviesTableHeader'
 
@@ -20,19 +18,16 @@ const columnsToRender = [
 
 class MoviesTable extends Component {
   render() {
-    const { movies } = this.props
     return (
       <Table padded unstackable basic="very">
         <MoviesTableHeader columns={columnsToRender} />
-        <MoviesTableBody movies={movies} columns={columnsToRender}/>
+        <MoviesTableBody columns={columnsToRender}/>
       </Table>
     )
   }
 }
 
-MoviesTable.propTypes = {
-  movies: PropTypes.arrayOf(MovieShape).isRequired,
-}
+MoviesTable.propTypes = {}
 
 MoviesTable.defaultProps = {
 }

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react'
 
+import { connect } from 'react-redux'
+import { getMovies } from 'Movies/actions/movies'
+
 class FilterForm extends Component {
   constructor() {
     super()
@@ -70,4 +73,9 @@ FilterForm.defaultProps = {
   onSearch: () => {},
 };
 
-export default FilterForm
+const mapStateToProps = () => ({})
+const reduxActions = {
+  onSearch: getMovies,
+}
+
+export default connect(mapStateToProps, reduxActions)(FilterForm)
