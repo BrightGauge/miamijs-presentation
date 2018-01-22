@@ -11,6 +11,29 @@ import YearPieChart from 'Movies/components/MovieCharts/YearPieChart'
 
 import localMovies from 'Movies/database'
 
+function filterByString(movies, key, value) {
+  if (value === '') {
+    return movies
+  }
+  return movies.filter((movie) => (
+    movie[key].toLowerCase().includes(value.toLowerCase())
+  ))
+}
+
+function searchAllMovies({ ...args }) {
+  let movies = localMovies
+  for (const key of Object.keys(args)) {
+    switch (key) {
+      case 'Title':
+      case 'Year':
+      case 'Genre':
+        movies = filterByString(movies, key, args[key])
+        break
+      default:
+    }
+  }
+  return movies
+}
 
 class MoviesSearch extends Component {
   constructor(props) {
@@ -19,28 +42,8 @@ class MoviesSearch extends Component {
     this.state = { movies: localMovies }
   }
 
-  filterByString(movies, key, value) {
-    if (value === '') {
-      return movies
-    }
-    return movies.filter((movie) => (
-      movie[key].toLowerCase().includes(value.toLowerCase())
-    ))
-  }
-
-  searchMovies({ ...args }) {
-    let movies = localMovies
-    for (const key of Object.keys(args)) {
-      switch (key) {
-        case 'Title':
-        case 'Year':
-        case 'Genre':
-          movies = this.filterByString(movies, key, args[key])
-          break
-        default:
-      }
-    }
-    this.setState({ movies })
+  searchMovies(args) {
+    this.setState({ movies: searchAllMovies(args) })
   }
 
   render() {
@@ -49,9 +52,7 @@ class MoviesSearch extends Component {
     return (
       <Segment.Group horizontal className="bg movies">
         <Segment basic className="movies-filters">
-          <MovieFilters
-            onSearch={this.searchMovies}
-          />
+          <MovieFilters onSearch={this.searchMovies} />
           <Divider />
           <YearPieChart movies={movies} />
           <Divider />
