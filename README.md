@@ -2,14 +2,10 @@
 
 Application for searching movies and displaying the result in different visual formats.
 
-## Table of Contents
-- [Motivation](#motivation)
-- [Follow Along](#follow-along)
-
-## Motivation
+### Motivation
 Show a React application, with starting symptoms of "prop hell", and transition it over to Redux in order to alliviate state management.
 
-## Follow Along
+### Follow Along
 In order to follow the refactor process along, please follow the instructions below
 - Clone the [master branch](https://github.com/BrightGauge/miamijs-presentation/tree/master) locally.
 - Run `npm install` or `yarn install` from within the cloned folder
