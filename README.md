@@ -11,7 +11,7 @@ Show a React application, with starting symptoms of "prop hell", and transition 
 
 ## Follow Along
 In order to follow the refactor process along, please follow the instructions below
-- Clone the [master](https://github.com/BrightGauge/miamijs-presentation/tree/master) locally.
+- Clone the [master branch](https://github.com/BrightGauge/miamijs-presentation/tree/master) locally.
 - Run `npm install` or `yarn install` from within the cloned folder
 - Run `npm run start` or `yarn run start` to start up the dev server from within the cloned folder
 
