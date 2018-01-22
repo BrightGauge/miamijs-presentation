@@ -13,8 +13,8 @@ import localMovies from 'Movies/database'
 
 
 class MoviesSearch extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.searchMovies = this.searchMovies.bind(this)
     this.state = { movies: localMovies }
   }

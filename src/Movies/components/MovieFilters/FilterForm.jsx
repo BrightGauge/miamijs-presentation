@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react'
 
 class FilterForm extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = { Title: '', Year: '', Genre: '' }
