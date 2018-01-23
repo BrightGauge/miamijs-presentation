@@ -3,7 +3,7 @@
 Application for searching movies and displaying the result in different visual formats.
 
 ### Motivation
-Show a React application, with starting symptoms of "prop hell", and transition it over to Redux in order to alliviate state management.
+Show a React application that's beginning to show symptoms of "prop hell". From here we then implement Redux in that application in order to alleviate some overhead involved with the state management.
 
 ### Follow Along
 In order to follow the refactor process along, please follow the instructions below
@@ -15,4 +15,4 @@ Detailed [step by step instructions](https://github.com/BrightGauge/miamijs-pres
 
 ___
 
-Built by the [BrightGauge Team](https://www.brightgauge.com/) with ❤️
+Built by the [BrightGauge Team](https://instagram.com/brightgauge/) with ❤️.
